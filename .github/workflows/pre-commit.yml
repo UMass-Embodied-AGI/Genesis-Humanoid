@@ -1,0 +1,17 @@
+name: pre-commit
+on:
+  merge_group:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  pre-commit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pre-commit/action@v3.0.1

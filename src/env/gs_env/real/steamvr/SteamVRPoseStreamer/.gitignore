@@ -1,0 +1,93 @@
+############################################
+# .NET / C#
+############################################
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+############################################
+# Build outputs (explicit safety)
+############################################
+**/bin/
+**/obj/
+*.exe
+*.dll
+*.pdb
+*.mdb
+
+############################################
+# Native libraries (DO NOT TRACK)
+# (SteamVR / OpenVR runtime DLLs)
+############################################
+openvr_api.dll
+openvr_api_native.dll
+**/openvr_api.dll
+**/openvr_api_native.dll
+
+############################################
+# OS junk
+############################################
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+############################################
+# Logs / temp
+############################################
+*.log
+*.tmp
+*.cache
+
+############################################
+# Editor / IDE
+############################################
+.vscode/
+.idea/
+*.code-workspace
+
+############################################
+# Python cache (since your repo also has Python)
+############################################
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+
+############################################
+# Virtual environments
+############################################
+.venv/
+venv/
+env/
+
+############################################
+# Jupyter
+############################################
+.ipynb_checkpoints/
+
+############################################
+# Data / recordings (safety)
+############################################
+*.csv
+*.pkl
+*.npz
+*.npy
+data/
+recordings/
+
+############################################
+# Optional: local config overrides
+############################################
+config.local.json
+settings.local.json
+.env

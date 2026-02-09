@@ -1,0 +1,8 @@
+motions:
+  - file: AMASS/AMASS.yaml
+    weight: 1.0
+  - file: lafan/lafan.yaml
+    weight: 10.0
+  - file: optitrack/optitrack.yaml
+    weight: 100.0
+root_path: assets/motion

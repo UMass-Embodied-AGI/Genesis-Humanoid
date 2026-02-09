@@ -1,0 +1,27 @@
+repos:
+  - repo: https://github.com/bufbuild/buf
+    rev: v1.55.1
+    hooks:
+      - id: buf-format
+      - id: buf-lint
+      - id: buf-generate
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.3
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.8.4
+    hooks:
+      - id: uv-lock
+        name: uv-lock (.)
+        args: [--project, .]
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.16.0
+    hooks:
+      - id: yamlfmt
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.24.2
+    hooks:
+      - id: toml-sort-fix

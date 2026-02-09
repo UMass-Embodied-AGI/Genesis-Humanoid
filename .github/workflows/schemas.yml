@@ -1,0 +1,25 @@
+name: gs-schemas
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "*"
+      - ".github/**"
+      - "src/schemas/**"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "*"
+      - ".github/**"
+      - "src/schemas/**"
+  merge_group: # only fires if your repo uses merge queue
+jobs:
+  gs-schemas:
+    uses: ./.github/workflows/python-package.yml
+    secrets: inherit
+    with:
+      project-directory: "."
+      package-directory: "./src/schemas"
+      package: "gs-schemas"

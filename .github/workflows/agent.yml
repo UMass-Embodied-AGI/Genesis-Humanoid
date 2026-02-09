@@ -1,0 +1,27 @@
+name: gs-agent
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "*"
+      - ".github/**"
+      - "src/agent/**"
+      - "src/schemas/**"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "*"
+      - ".github/**"
+      - "src/agent/**"
+      - "src/schemas/**"
+  merge_group: # only fires if your repo uses merge queue
+jobs:
+  gs-agent:
+    uses: ./.github/workflows/python-package.yml
+    secrets: inherit
+    with:
+      project-directory: "."
+      package-directory: "./src/agent"
+      package: "gs-agent"

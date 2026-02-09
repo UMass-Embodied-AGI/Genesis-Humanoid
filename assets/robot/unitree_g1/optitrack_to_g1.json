@@ -1,0 +1,217 @@
+{
+    "robot_root_name": "pelvis",
+    "human_root_name": "pelvis",
+    "ground_height": 0.0,
+    "human_height_assumption": 1.8,
+    "human_scale_table": {
+        "pelvis": 0.9,
+        "spine3": 0.9,
+
+        "left_hip": 0.9,
+        "right_hip": 0.9,
+        "left_knee": 0.9,
+        "right_knee": 0.9,
+        "left_foot": 0.9,
+        "right_foot": 0.9,
+
+        "left_shoulder": 0.8,
+        "right_shoulder": 0.8,
+        "left_elbow": 0.8,
+        "right_elbow": 0.8,
+        "left_wrist": 0.8,
+        "right_wrist": 0.8
+    },
+
+    "ik_match_tables": [
+        {
+            "pelvis": [
+                "pelvis",
+                100,
+                50,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            ],
+            "left_ankle_roll_link": [
+                "left_ankle_roll_link",
+                10,
+                0,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            ],
+            "right_ankle_roll_link": [
+                "right_ankle_roll_link",
+                10,
+                0,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            ],
+            "torso_link": [
+                "torso_link",
+                0,
+                10,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            ],
+            "left_wrist_yaw_link": [
+                "left_wrist_yaw_link",
+                10,
+                1,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            ],
+            "right_wrist_yaw_link": [
+                "right_wrist_yaw_link",
+                10,
+                1,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            ]
+        },
+        {
+            "pelvis": [
+                "pelvis",
+                100,
+                25,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            ],
+            "left_ankle_roll_link": [
+                "left_ankle_roll_link",
+                10,
+                1,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [ -0.5, 0.5, 0.5, 0.5 ]
+            ],
+            "right_ankle_roll_link": [
+                "right_ankle_roll_link",
+                10,
+                1,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [ 
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0 ]
+            ],
+            "torso_link": [
+                "torso_link",
+                0,
+                10,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            ],
+            "left_wrist_yaw_link": [
+                "left_wrist_yaw_link",
+                10,
+                2,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            ],
+            "right_wrist_yaw_link": [
+                "right_wrist_yaw_link",
+                10,
+                2,
+                [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            ]
+        }
+    ]
+}

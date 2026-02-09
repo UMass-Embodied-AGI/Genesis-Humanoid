@@ -1,0 +1,18 @@
+pelvis_contour_link:
+  pos: [-0.020, 0.010, 0.030]
+  quat: [1.0, 0.0, 0.0, 0.0]
+torso_link:
+  pos: [-0.070, 0.010, -0.200]
+  quat: [1.0, 0.0, 0.0, 0.0]
+left_rubber_hand:
+  pos: [-0.060, -0.010, 0.020]
+  quat: [1.0, 0.0, 0.0, 0.0]
+right_rubber_hand:
+  pos: [-0.060, 0.010, 0.020]
+  quat: [1.0, 0.0, 0.0, 0.0]
+left_ankle_roll_link:
+  pos: [-0.040, -0.020, -0.020]
+  quat: [1.0, 0.0, 0.0, 0.0]
+right_ankle_roll_link:
+  pos: [-0.040, 0.020, -0.020]
+  quat: [1.0, 0.0, 0.0, 0.0]

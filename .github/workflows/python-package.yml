@@ -1,0 +1,36 @@
+name: Python package
+on:
+  workflow_call:
+    inputs:
+      project-directory:
+        required: true
+        type: string
+      package-directory:
+        required: true
+        type: string
+      package:
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  pytest:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-suffix: ${{ github.workflow }}
+          version: "0.8.4"
+      - name: Run tests (pytest)
+        run: >
+          uv --project "${{ inputs.project-directory }}" run --isolated --locked --package ${{ inputs.package }} pytest -v "${{ inputs.package-directory }}" || ([ $? -eq 5 ] && exit 0)
+

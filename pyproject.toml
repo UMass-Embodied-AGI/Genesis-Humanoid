@@ -1,0 +1,136 @@
+[project]
+name = "genesis-humanoid"
+# version comes from [tool.hatch.version]; don't set [project].version
+description = "Playground for building intelligent robots"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dynamic = ["version"]
+# Root meta-package pulls in the three subpackages released together
+dependencies = [
+  "gs-agent>=0.0.1,<0.1",
+  "gs-env>=0.0.1,<0.1",
+  "gs-schemas>=0.0.1,<0.1",
+]
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch]
+
+[tool.hatch.version]
+source = "regex"
+path = "VERSION"
+# Capture any non-whitespace single-line string (must still be PEP 440 compliant)
+pattern = "^(?P<version>\\S+)$"
+
+# ---------------- Pyright ----------------
+[tool.pyright]
+exclude = []
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.10"
+reportMatchNotExhaustive = "error"
+reportMissingModuleSource = "error"
+reportMissingTypeArgument = "error"
+reportUnnecessaryCast = "error"
+reportUnnecessaryComparison = "error"
+reportUnnecessaryContains = "error"
+reportUnnecessaryIsInstance = "error"
+
+# ---------------- Ruff ----------------
+[tool.ruff]
+line-length = 100
+src = ["."]
+target-version = "py310"
+exclude = [
+  "cyclonedds/docs/manual/_build",
+  "cyclonedds/hooks",
+  "src/agent/gs_agent/utils/logger.py",
+]
+
+[tool.ruff.lint]
+select = [
+  "ANN001",
+  "ANN201",
+  "ANN202",
+  "ANN204",
+  "ANN205",
+  "ANN206",
+  "ASYNC",
+  "B",
+  "E",
+  "F",
+  "G",
+  "I",
+  "INP",
+  "RUF100",
+  "SLF",
+  "UP",
+  "W",
+]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"*/scripts/*" = ["INP001"]
+
+# ---------------- Pytest ----------------
+[tool.pytest]
+
+[tool.pytest.ini_options]
+filterwarnings = ["error", "ignore::DeprecationWarning", "ignore::ImportWarning"]
+markers = ["gpu: tests that require gpus"]
+
+# ---------------- uv ----------------
+[tool.uv]
+required-environments = [
+  "sys_platform == 'darwin' and platform_machine == 'arm64'",
+  "sys_platform == 'linux' and platform_machine == 'aarch64'",
+  "sys_platform == 'linux' and platform_machine == 'x86_64'",
+]
+
+# Map dependency names to workspace members (names must match [project].name)
+[tool.uv.sources]
+fairscale = {git = "https://github.com/facebookresearch/fairscale", rev = "146f160241651e1211c4247979f159a4ef43b54a"}
+genesis-world = {git = "https://github.com/Genesis-Embodied-AI/Genesis", rev = "4808e5f0186c8095f81bc6e27d6c69e9d3bdb4a4"}
+smplx = {git = "https://github.com/vchoutas/smplx", rev = "1265df7ba545e8b00f72e7c557c766e15c71632f"}
+gs-env = {workspace = true}
+gs-agent = {workspace = true}
+gs-schemas = {workspace = true}
+torch = [
+  {index = "pytorch-cpu", marker = "sys_platform != 'linux'"},
+  {index = "pytorch-cpu", marker = "sys_platform == 'linux' and platform_machine != 'x86_64'"},
+  {index = "pytorch-cu128", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'"},
+]
+torchvision = [
+  {index = "pytorch-cpu", marker = "sys_platform != 'linux'"},
+  {index = "pytorch-cpu", marker = "sys_platform == 'linux' and platform_machine != 'x86_64'"},
+  {index = "pytorch-cu128", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'"},
+]
+xformers = [
+  {index = "pytorch-cu128", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'"},
+]
+
+[tool.uv.workspace]
+members = [
+  "src/agent",
+  "src/env",
+  "src/schemas",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+# ---------------- tomlsort ----------------
+[tool.tomlsort]
+no_sort_tables = true
+sort_inline_arrays = true
+trailing_comma_inline_array = true

@@ -1,0 +1,76 @@
+############################
+# Unity generated folders #
+############################
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+############################
+# Unity cache / artifacts #
+############################
+sysinfo.txt
+
+############################
+# IDE / Editor files #
+############################
+.vs/
+.idea/
+.vscode/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+
+############################
+# OS junk #
+############################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+
+############################
+# Unity crash / backup #
+############################
+crashlytics-build.properties
+
+############################
+# Addressables & Shader cache #
+############################
+**/[Aa]ssets/**/[Aa]ddressable[Aa]ssetsData/*/*.bin*
+**/[Aa]ssets/**/[Aa]ddressable[Aa]ssetsData/*/*.json*
+**/[Aa]ssets/**/[Aa]ddressable[Aa]ssetsData/*/*.hash*
+
+############################
+# IL2CPP / Android / iOS #
+############################
+**/il2cppOutput/
+**/gradle/
+**/*.apk
+**/*.aab
+**/*.ipa
+
+############################
+# Rider / VS cache #
+############################
+.idea/
+.vscode/
+*.sln.DotSettings.user
+
+############################
+# Do NOT ignore these! #
+############################
+!Assets/**/*.meta
+!Packages/**
+!ProjectSettings/**
+

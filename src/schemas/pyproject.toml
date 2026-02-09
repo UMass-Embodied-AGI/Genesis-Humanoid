@@ -1,0 +1,28 @@
+[project]
+name = "gs-schemas"
+version = "0.1.0"
+description = "Shared typed interfaces for Genesis Playground"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = ["pydantic>=2.11.4"]
+
+[project.optional-dependencies]
+types = ["jaxtyping>=0.2.28", "numpy>=1.26"]
+
+[dependency-groups]
+dev = [
+  "fire>=0.7.0",
+  "pre-commit>=4.3.0",
+  "pyright[nodejs]>=1.1.404",
+  "pytest-timeout>=2.4.0",
+  "pytest>=8.4.1",
+  "ruff>=0.12.10",
+]
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "../../VERSION"
