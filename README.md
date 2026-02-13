@@ -20,7 +20,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone and setup the repository
 git clone https://github.com/UMass-Embodied-AGI/Genesis-Humanoid.git
-cd GenesisHumanoid
+cd Genesis-Humanoid
 git fetch origin extremcontrol:extremcontrol
 git checkout extremcontrol
 ```
