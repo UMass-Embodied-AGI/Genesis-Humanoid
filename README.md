@@ -1,94 +1,29 @@
-# Genesis Humanoid
+# ExtremControl: Low-Latency Humanoid Teleoperation with Direct Extremity Control
 
-**Genesis Humanoid** is an all-in-one humanoid research platform on top of the [Genesis](https://github.com/Genesis-Embodied-AI/Genesis) simulator. It supports real-time human-to-humanoid retargeting, includes different motion dataset with unified format, provides an end-to-end learning pipeline, and offers a modular low-level control testbed for experimentation.
+[[Website]](https://owenowl.github.io/extremcontrol/) [[Video]](https://youtu.be/9Qb57bzvzO4)
 
-<p align="center">
-  <img src="media/teaser.gif" width="320">
+<p align="left">
+  <img src="media/teaser.gif" width="480">
 </p>
 
-Genesis Humanoid shares the modular design with [GenesisPlayground](https://github.com/yun-long/GenesisPlayground), featuring with:
-- **macOS compatibility** provides an interactive viewer on your MacBook.
+This is the branch for [ExtremControl](https://owenowl.github.io/extremcontrol/). New feature of Genesis Humanoid will not be updated here except:
+- READMEs for `gs_env/real`
+- New checkpoint for current Cartesian-mapping (we found a mismatch on the provided checkpoint, but it's still functional)
 
-<p align="center">
-  <img src="media/MacOSviewer.gif" width="320">
-</p>
-
-- **Sim-Real duality** enables seamless sim2real deployment with the same code.
-
-<p align="center">
-  <img src="media/CodeExample1.png" width="320">
-</p>
-<p align="center">
-<img src="media/CodeExample2.png" width="320">
-</p>
-
-- **Extraordinary speed** that reaches **200k RL** steps per second (8192 environments, decimation 4 and 29 articulated joints, tested on a NVIDIA L40s with `run_ppo_walking.py`), which is nearly **0.8M FPS**.
-
-<p align="center">
-  <img src="media/Speed.png" width="200">
-</p>
-
-We list several featured projects built on Genesis Humanoid below:
-
-<table>
-<tr>
-<td width="200">
-
-<a href="https://github.com/yourname/ExtremControl">
-  <img src="media/ExtremControl.gif" width="240">
-</a>
-
-</td>
-
-<td valign="top">
-
-<h3>
-  <a href="https://github.com/yourname/ExtremControl" style="color: inherit;">
-    ExtremControl
-  </a>
-</h3>
-
-<p>
-  A whole-body teleoperation system for Unitree G1 with 
-  <strong>50ms end-to-end latency</strong>.
-</p>
-
-</td>
-</tr>
-</table>
-
-## Code Structure
-
-Adopting from [GenesisPlayground](https://github.com/yun-long/GenesisPlayground), Genesis Humanoid is built with:
-- `gs-schemas` - Shared data structures and interfaces
-- `gs-agent` - Robot learning algorithms (PPO and DAgger)
-- `gs-env` - Wrapped environments including both simulation and real world
-- `examples` - Ready-to-run examples in simulation
-- `deploy` - Ready-to-run examples in the real world
-
-To setup a new simulation environment, write new robot and environment configurations in `src/env/gs_env/sim/robots/config/registry.py` & `src/env/gs_env/sim/envs/config/registry.py`.
-
-## Code Style
-
-We use `pre-commit` to enforce code formatting and linting.
-
-```bash
-pre-commit install
-pre-commit run --all-files
-```
-
-## Installation
+## Installation & Example
 
 ### 1. Install Dependencies
 
-<!-- ```bash
+```bash
 # Install uv (fast Python package manager)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone and setup the repository
-git clone git@
+git clone https://github.com/UMass-Embodied-AGI/Genesis-Humanoid.git
 cd GenesisHumanoid
-``` -->
+git fetch origin extremcontrol:extremcontrol
+git checkout extremcontrol
+```
 
 ### 2. Install the `gs-env` package
 
@@ -107,13 +42,30 @@ pip install -r requirements.txt
 source .venv/bin/activate
 ```
 
-### 4. Setup real-world environment
+### 4. Evaluate with provided checkpoint
 
-Please refer to READMEs in each folder under `src/env/gs_env/real`.
+```bash
+python examples/run_ppo_motion.py --exp_name extremcontrol --eval True --show_viewer True
+```
+
+### 5. Setup real-world environment
+
+Please refer to READMEs in each folder (TODO) under `src/env/gs_env/real`.
+
+### 6. Deploy on real robot
+
+```bash
+uv pip install redis
+redis-server
+# Simulation
+python deploy/g1_teleop.py --exp_name extremcontrol
+
+# Real world
+# Better to start from small ACTION_SCALE
+python deploy/g1_teleop.py --exp_name extremcontrol --sim False --action_scale ACTION_SCALE
+```
 
 ## Usage
-
-A wide range of example usages of Genesis Humanoid can be found in the `/examples` and `/deploy` directories.
 
 ### Process existing motions
 
@@ -217,22 +169,6 @@ python deploy/optitrack_publisher,py
 
 # SteanVR
 python deploy/steamvr_publisher.py
-```
-
-## Unified Motion Dataset
-The `convert_[ ].py` files convert the existing motions from different format into:
-```python
-{
-    "fps": 50,
-    "link_names": ["LINK_NAMES_IN_ORDER"],
-    "dof_names": ["DOF_NAMES_IN_ORDER"],
-    "pos": torch.Tensor, # [num_frames, 3] position of the root link
-    "quat": torch.Tensor, # [num_frames, 4] quaternion of the root link
-    "dof_pos": torch.Tensor, # [num_frames, num_dof] dof positions in order
-    "link_pos": torch.Tensor, # [num_frames, num_link, 3] link positions in order
-    "link_quat": torch.Tensor, # [num_frames, num_link, 4] link quaternions in order
-    "foot_contact": torch.Tensor, # [num_frames, 2] foot contact probability
-}
 ```
 
 <!-- ## Citation

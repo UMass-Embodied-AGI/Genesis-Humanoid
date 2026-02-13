@@ -1,0 +1,36 @@
+algorithm_type: PPO
+policy_backbone:
+  hidden_dims:
+    __tuple__:
+      - 1024
+      - 512
+      - 256
+  activation: RELU
+  network_type: MLP
+critic_backbone:
+  hidden_dims:
+    __tuple__:
+      - 1024
+      - 512
+      - 256
+  activation: RELU
+  network_type: MLP
+lr: 3.0e-05
+value_lr: null
+lr_type: ADAPTIVE
+lr_adaptive_factor: 1.5
+lr_min: 1.0e-05
+lr_max: 0.001
+gamma: 0.99
+gae_lambda: 0.95
+clip_ratio: 0.2
+value_loss_coef: 1.0
+entropy_coef: 0.003
+max_grad_norm: 1.0
+target_kl: 0.01
+use_clipped_value_loss: false
+num_epochs: 3
+num_mini_batches: 16
+rollout_length: 24
+optimizer_type: ADAM
+weight_decay: 0.0
