@@ -12,6 +12,8 @@ This is the branch for [ExtremControl](https://owenowl.github.io/extremcontrol/)
 
 ## Installation & Example
 
+**MacOS is supported.**
+
 ### 1. Install Dependencies
 
 ```bash
