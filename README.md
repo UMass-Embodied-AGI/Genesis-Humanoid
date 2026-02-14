@@ -240,7 +240,7 @@ The `convert_[ ].py` files convert the existing motions from different format in
 
 If you find our code useful, please consider citing our related paper:
 ```
-@misc{xiong2026extremcontrollowlatencyhumanoidteleoperation,
+@misc{xiong2026extremcontrol,
       title={ExtremControl: Low-Latency Humanoid Teleoperation with Direct Extremity Control}, 
       author={Ziyan Xiong and Lixing Fang and Junyun Huang and Kashu Yamazaki and Hao Zhang and Chuang Gan},
       year={2026},
