@@ -10,6 +10,7 @@ from gs_env.common.utils.math_utils import (
     quat_from_angle_axis,
     quat_mul,
     quat_to_rotation_6D,
+    quat_from_euler,
 )
 from gs_env.common.utils.motion_utils import build_motion_obs_from_dict
 from gs_env.sim.envs.config.registry import EnvArgsRegistry
@@ -128,10 +129,10 @@ def main(
         env.eval()
         env.reset()
 
-        # base_euler = torch.tensor([0.0, 0.0, 3.14], device=env.device)
-        # base_quat = quat_from_euler(base_euler)
-        # env.robot.set_state(quat=base_quat)
-        # env.update_buffers()
+        base_euler = torch.tensor([0.0, 0.0, 1.57], device=env.device)
+        base_quat = quat_from_euler(base_euler)
+        env.robot.set_state(quat=base_quat)
+        env.update_buffers()
 
     else:
         if view:
@@ -254,7 +255,7 @@ def main(
         motion_obs_elements = list(getattr(env_args, "observed_steps", {}).keys())
 
         redis_client.update()
-        # redis_client.update_quat(env.base_quat)
+        redis_client.update_quat(env.base_quat)
 
         obs_history = None
 
@@ -343,6 +344,8 @@ def main(
                 terminated = env.get_terminated()  # type: ignore
                 if terminated[0]:
                     env.reset_idx(torch.IntTensor([0]))  # type: ignore
+                    env.update_buffers()
+                    redis_client.update_quat(env.base_quat)
                 ref_quat_yaw = quat_from_angle_axis(
                     redis_client.ref_base_euler[:, 2],
                     torch.tensor([0, 0, 1], device=env.device, dtype=torch.float),

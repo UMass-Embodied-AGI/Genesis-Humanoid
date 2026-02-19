@@ -86,6 +86,26 @@ class MotionStandStillFeetContactPenalty(RewardTerm):
         return -insufficient_contact * stand_still
 
 
+class MotionStandStillAnkleVelPenalty(RewardTerm):
+    """
+    Penalize the ankle joint velocity when standing still.
+
+    Args:
+        dof_vel: DoF velocity tensor of shape (B, D) where B is the batch size and D is the number of DoFs.
+    """
+
+    required_keys = ("dof_vel", "ref_dof_vel", "foot_contact_weighted")
+
+    def _compute(
+        self, dof_vel: torch.Tensor, ref_dof_vel: torch.Tensor, foot_contact_weighted: torch.Tensor
+    ) -> torch.Tensor:  # type: ignore
+        stand_still = torch.all(foot_contact_weighted > 0.4, dim=-1)
+        ankle_vel = dof_vel[:, [4, 5, 10, 11]]
+        ref_ankle_vel = ref_dof_vel[:, [4, 5, 10, 11]]
+        ankle_vel_error = (ankle_vel - ref_ankle_vel).abs().sum(dim=-1)
+        return -ankle_vel_error * stand_still
+
+
 class WaistRollPenalty(RewardTerm):
     """
     Penalize the waist DoF position.

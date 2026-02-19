@@ -444,7 +444,7 @@ class RedisClient:
             elif key == "base_quat":
                 future_dict[key] = self.ref_base_quat.unsqueeze(1)
             elif key == "base_lin_vel":
-                future_dict[key] = self.ref_base_lin_vel_local.unsqueeze(1)
+                future_dict[key] = quat_apply(self.ref_base_quat, self.ref_base_lin_vel_local)
             elif key == "base_ang_vel":
                 base_ang_vel_global = quat_apply(self.ref_base_quat, self.ref_base_ang_vel_local)
                 future_dict[key] = base_ang_vel_global.unsqueeze(1)
