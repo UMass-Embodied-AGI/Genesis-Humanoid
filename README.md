@@ -6,9 +6,7 @@
   <img src="media/teaser.gif" width="480">
 </p>
 
-This is the branch for [ExtremControl](https://owenowl.github.io/extremcontrol/). New feature of Genesis Humanoid will not be updated here except:
-- READMEs for `gs_env/real`
-- New checkpoint for current Cartesian-mapping (we found a mismatch on the provided checkpoint, but it's still functional)
+This is the branch for [ExtremControl](https://owenowl.github.io/extremcontrol/). New feature of Genesis Humanoid will not be updated here.
 
 ## Installation & Example
 

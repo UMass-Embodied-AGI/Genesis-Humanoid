@@ -95,6 +95,11 @@ class MotionEnv(LeggedRobotEnv):
             device=self._device,
             dtype=torch.float32,
         )
+        self.foot_orientation = torch.zeros(
+            (self.num_envs, len(self._robot.foot_links_idx), 3),
+            device=self._device,
+            dtype=torch.float32,
+        )
         self.base_height = torch.zeros(self.num_envs, device=self._device, dtype=torch.float32)
         self.base_rotation_6D = torch.zeros(
             self.num_envs, 6, device=self._device, dtype=torch.float32
@@ -644,6 +649,10 @@ class MotionEnv(LeggedRobotEnv):
         self.foot_contact_weighted[:] = self.foot_contact_force / (
             self.robot.mass * self.scene.gravity
         )
+        foot_quaternions = self.link_quaternions[:, self._robot.foot_links_idx].reshape(-1, 4)
+        self.foot_orientation[:] = quat_apply(
+            quat_inv(foot_quaternions), self.global_gravity.repeat(2, 1)
+        ).reshape(self.num_envs, len(self._robot.foot_links_idx), 3)
 
     def update_history(self) -> None:
         super().update_history()

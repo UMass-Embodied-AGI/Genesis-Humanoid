@@ -136,7 +136,7 @@ DRArgsRegistry["default"] = DomainRandomizationArgs(
     motor_offset_range=(-0.1, 0.1),
     friction_range=(0.3, 1.0),
     mass_range=(-2.0, 5.0),
-    com_displacement_range=(-0.05, 0.05),
+    com_displacement_range=(-0.1, 0.1),
     # external_force_range=(5.0, 5.0, 10.0),
     # external_torque_range=(1.0, 1.0, 1.0),
 )

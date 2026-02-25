@@ -1,6 +1,0 @@
-total_iterations: 6001
-freeze_actor_iterations: 200
-freeze_critic_iterations: 0
-log_interval: 5
-save_interval: 600
-save_path: logs/ppo_gs_teleop

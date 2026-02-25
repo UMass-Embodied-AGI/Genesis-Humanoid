@@ -82,7 +82,7 @@ class MotionStandStillFeetContactPenalty(RewardTerm):
         self, foot_contact_weighted: torch.Tensor, ref_foot_contact: torch.Tensor
     ) -> torch.Tensor:  # type: ignore
         stand_still = torch.all(ref_foot_contact > 0.6, dim=-1)
-        insufficient_contact = (0.25 - foot_contact_weighted).clamp(min=0.0).square().sum(dim=-1)
+        insufficient_contact = (0.5 - foot_contact_weighted).clamp(min=0.0).square().sum(dim=-1)
         return -insufficient_contact * stand_still
 
 
@@ -198,19 +198,24 @@ class G1FeetHeightPenalty(FeetHeightPenalty):
     target_height = 0.2
 
 
-class FeetOrientationPenalty(RewardTerm):
+class FootOrientationPenalty(RewardTerm):
     """
     Penalize the feet orientation.
 
     Args:
-        feet_orientation: Feet orientation tensor of shape (B, 2, 3) where B is the batch size.
+        foot_orientation: Foot orientation tensor of shape (B, 2, 3) where B is the batch size.
+        foot_contact_weighted: Foot contact weighted tensor of shape (B, 2) where B is the batch size.
     """
 
-    required_keys = ("feet_orientation",)
+    required_keys = ("foot_orientation", "foot_contact_weighted")
 
-    def _compute(self, feet_orientation: torch.Tensor) -> torch.Tensor:  # type: ignore
-        feet_orientation_deviation = feet_orientation[:, :, :2].square().sum(dim=-1)
-        return -feet_orientation_deviation.sum(dim=-1)
+    def _compute(
+        self, foot_orientation: torch.Tensor, foot_contact_weighted: torch.Tensor
+    ) -> torch.Tensor:  # type: ignore
+        foot_orientation_deviation = (
+            foot_orientation[:, :, :2].square().sum(dim=-1) * foot_contact_weighted
+        )
+        return -foot_orientation_deviation.sum(dim=-1)
 
 
 class LinVelYPenalty(RewardTerm):
