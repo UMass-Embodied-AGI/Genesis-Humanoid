@@ -1145,8 +1145,8 @@ class G1Retargeter:
         # G1 physical parameters
         arm_scale = 0.95
         leg_scale = 0.97
-        self.g1_shoulder_y = 0.100
-        self.g1_arm_length = 0.419 * arm_scale
+        self.g1_shoulder_y = 0.135
+        self.g1_arm_length = 0.4 * arm_scale
         self.g1_pelvis_shoulder_z = 1.082 - 0.793
         self.g1_pelvis_torso_z = 0.837 - 0.793
         self.g1_pelvis_z = 0.793 * leg_scale

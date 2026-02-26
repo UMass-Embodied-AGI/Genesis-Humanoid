@@ -267,7 +267,7 @@ if __name__ == "__main__":
 
     # Find pickle files saved by optitrack_publisher.py in assets/optitrack
     pkl_files = list(Path("./assets/optitrack").glob("*.pkl"))
-    # pkl_files = ["./assets/optitrack/little_step_0.pkl"]
+    # pkl_files = ["./assets/optitrack/small_step_0.pkl"]
 
     log_dir = Path("./assets/motion/optitrack")
     os.makedirs(log_dir, exist_ok=True)
