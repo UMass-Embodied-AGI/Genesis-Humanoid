@@ -43,7 +43,7 @@ We list several featured projects built on Genesis Humanoid below:
 <td valign="top">
 
 <h3>
-  <a href="https://owenowl.github.io/extremcontrol/" style="color: inherit;">
+  <a href="https://extremcontrol.github.io/" style="color: inherit;">
     ExtremControl
   </a>
 </h3>
