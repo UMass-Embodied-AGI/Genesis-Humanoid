@@ -6,7 +6,7 @@
   <img src="media/teaser.gif" width="480">
 </p>
 
-This is the branch for [ExtremControl](https://owenowl.github.io/extremcontrol/). New feature of Genesis Humanoid will not be updated here.
+This is the branch for [ExtremControl](https://extremcontrol.github.io/). New feature of Genesis Humanoid will not be updated here.
 
 ## Installation & Example
 
