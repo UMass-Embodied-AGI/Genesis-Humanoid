@@ -1,6 +1,6 @@
 # ExtremControl: Low-Latency Humanoid Teleoperation with Direct Extremity Control
 
-[[Website]](https://owenowl.github.io/extremcontrol/) [[Video]](https://youtu.be/9Qb57bzvzO4) [[Paper](https://arxiv.org/abs/2602.11321)]
+[[Website]](https://extremcontrol.github.io/) [[Video]](https://youtu.be/9Qb57bzvzO4) [[Paper](https://arxiv.org/abs/2602.11321)]
 
 <p align="left">
   <img src="media/teaser.gif" width="480">
