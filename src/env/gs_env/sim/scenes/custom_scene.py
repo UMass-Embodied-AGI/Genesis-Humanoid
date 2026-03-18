@@ -17,7 +17,7 @@ class CustomScene(FlatScene):
         device: torch.device,
         args: CustomSceneArgs,
         show_viewer: bool = False,
-        show_fps: bool = False,
+        show_fps: bool = True,
         n_envs_per_row: int | None = None,
         env_spacing: tuple[float, float] = (1.0, 1.0),
         img_resolution: tuple[int, int] | None = None,

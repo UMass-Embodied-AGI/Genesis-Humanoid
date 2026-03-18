@@ -165,23 +165,6 @@ VisArgsRegistry["default"] = gs.options.VisOptions(
 
 
 # ------------------------------------------------------------
-# Viewer
-# ------------------------------------------------------------
-
-ViewerArgsRegistry: dict[str, gs.options.ViewerOptions] = {}
-
-ViewerArgsRegistry["default"] = gs.options.ViewerOptions(
-    res=None,
-    refresh_rate=60,
-    max_FPS=60,
-    camera_pos=(3.5, 0.5, 2.5),
-    camera_lookat=(0.0, 0.0, 0.5),
-    camera_up=(0.0, 0.0, 1.0),
-    camera_fov=40,
-)
-
-
-# ------------------------------------------------------------
 # Scene
 # ------------------------------------------------------------
 
@@ -239,7 +222,7 @@ SceneArgsRegistry["flat_scene_legged"] = FlatSceneArgs(
         camera_pos=(-2.0, 0.0, 0.6),
         camera_lookat=(0.0, 0.0, 0.6),
         camera_fov=50,
-        max_FPS=60,
+        max_FPS=1000,
     ),
     normal=(0.0, 0.0, 1.0),
 )
@@ -267,7 +250,7 @@ SceneArgsRegistry["custom_scene_desk"] = CustomSceneArgs(
         camera_pos=(-2.0, 0.0, 0.6),
         camera_lookat=(0.0, 0.0, 0.6),
         camera_fov=50,
-        max_FPS=60,
+        max_FPS=1000,
     ),
     normal=(0.0, 0.0, 1.0),
     remove_ground=False,
@@ -318,7 +301,7 @@ SceneArgsRegistry["custom_scene_g1_mocap"] = CustomSceneArgs(
         camera_pos=(-2.0, 0.0, 0.6),
         camera_lookat=(0.0, 0.0, 0.6),
         camera_fov=50,
-        max_FPS=60,
+        max_FPS=1000,
     ),
     normal=(0.0, 0.0, 1.0),
     remove_ground=False,
